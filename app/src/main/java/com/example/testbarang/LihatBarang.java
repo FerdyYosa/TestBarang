@@ -1,6 +1,7 @@
 package com.example.testbarang;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class LihatBarang extends AppCompatActivity {
+public class LihatBarang extends AppCompatActivity implements AdapterLihatBarang.FirebaseDataListener{
     /**
      * Mendefinisikan variable yang akan dipakai
      */
@@ -92,4 +93,15 @@ public class LihatBarang extends AppCompatActivity {
     public static Intent getActIntent(Activity activity){
         return new Intent(activity, LihatBarang.class);
     }
+
+    public void onDeleteData(Barang barang, final int position) {
+        /**
+         * Kode ini akan dipanggil ketika method onDeleteData
+         * dipanggil dari adapter lewat interface.
+         * Yang kemudian akan mendelete data di Firebase Realtime DB
+         * berdasarkan key barang.
+         * Jika sukses akan memunculkan Toast
+         */
+    }
+
 }

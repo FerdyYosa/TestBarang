@@ -1,5 +1,7 @@
 package com.example.testbarang;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ public class AdapterLihatBarang extends RecyclerView.Adapter<AdapterLihatBarang.
 
     private ArrayList<Barang> daftarBarang;
     private Context context;
+    FirebaseDataListener listener;
 
     public AdapterLihatBarang(ArrayList<Barang> barangs, Context ctx){
         /**
@@ -19,6 +22,7 @@ public class AdapterLihatBarang extends RecyclerView.Adapter<AdapterLihatBarang.
          */
         daftarBarang = barangs;
         context = ctx;
+//        listener = () ctx;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -64,6 +68,11 @@ public class AdapterLihatBarang extends RecyclerView.Adapter<AdapterLihatBarang.
                 /**
                  * untuk latihan Selanjutnya ,fungsi Delete dan Update data
                  */
+                final Dialog dialog = new Dialog(context);
+//                dialog.addContentView(R.layout.dialog_view);
+                dialog.setTitle("Pilih Aksi");
+                dialog.show();
+
                 return true;
             }
         });
@@ -76,5 +85,8 @@ public class AdapterLihatBarang extends RecyclerView.Adapter<AdapterLihatBarang.
          * Mengembalikan jumlah item pada barang
          */
         return daftarBarang.size();
+    }
+    public interface FirebaseDataListener{
+        void onDeleteData(Barang barang, int position);
     }
 }
