@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -102,6 +104,14 @@ public class LihatBarang extends AppCompatActivity implements AdapterLihatBarang
          * berdasarkan key barang.
          * Jika sukses akan memunculkan Toast
          */
+        if (database!=null){
+            database.child("Barang").child(barang.getKode()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(LihatBarang.this, "Berhasil Delete", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
     }
 
 }

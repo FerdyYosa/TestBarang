@@ -1,10 +1,12 @@
 package com.example.testbarang;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.content.Context;
 import java.util.ArrayList;
@@ -73,6 +75,33 @@ public class AdapterLihatBarang extends RecyclerView.Adapter<AdapterLihatBarang.
                 dialog.setTitle("Pilih Aksi");
                 dialog.show();
 
+                Button editButton = (Button) dialog.findViewById(R.id.bt_edit_data);
+                Button delButton = (Button) dialog.findViewById(R.id.bt_delete_data);
+
+                //apabila tombol edit diklik
+                editButton.setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.dismiss();
+                                context.startActivity(LihatBarang.getActIntent((Activity) context).putExtra("data", daftarBarang.get(position)));
+                            }
+                        }
+                );
+
+                //apabila tombol delete diklik
+                delButton.setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                /**
+                                 *  Kodingan untuk Delete data (memanggil interface delete data)
+                                 */
+                                dialog.dismiss();
+                                listener.onDeleteData(daftarBarang.get(position), position);
+                            }
+                        }
+                );
                 return true;
             }
         });
