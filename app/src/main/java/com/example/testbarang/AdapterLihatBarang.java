@@ -24,7 +24,7 @@ public class AdapterLihatBarang extends RecyclerView.Adapter<AdapterLihatBarang.
          */
         daftarBarang = barangs;
         context = ctx;
-//        listener = () ctx;
+        listener = (LihatBarang) ctx;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -71,7 +71,7 @@ public class AdapterLihatBarang extends RecyclerView.Adapter<AdapterLihatBarang.
                  * untuk latihan Selanjutnya ,fungsi Delete dan Update data
                  */
                 final Dialog dialog = new Dialog(context);
-//                dialog.addContentView(R.layout.dialog_view);
+                dialog.setContentView(R.layout.dialog_view);
                 dialog.setTitle("Pilih Aksi");
                 dialog.show();
 
