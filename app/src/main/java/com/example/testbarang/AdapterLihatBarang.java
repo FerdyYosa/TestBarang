@@ -79,12 +79,13 @@ public class AdapterLihatBarang extends RecyclerView.Adapter<AdapterLihatBarang.
                 Button delButton = (Button) dialog.findViewById(R.id.bt_delete_data);
 
                 //apabila tombol edit diklik
+                //Note: Saat akan update, kode barang tidak usah diubah-ubah, nama barang saja.
                 editButton.setOnClickListener(
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 dialog.dismiss();
-                                context.startActivity(LihatBarang.getActIntent((Activity) context).putExtra("data", daftarBarang.get(position)));
+                                context.startActivity(TambahData.getActIntent((Activity) context).putExtra("data", daftarBarang.get(position)));
                             }
                         }
                 );
